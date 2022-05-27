@@ -1,0 +1,8 @@
+blocks:
+  1: AIR
+  2: DIAMOND_BLOCK
+  3: GOLD_BLOCK
+  4: customcrops:pot  #IA方块兼容
+
+cores:
+  5: LAPIS_BLOCK

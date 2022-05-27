@@ -1,0 +1,9 @@
+name: CustomTotems
+version: '1.0'
+main: net.momirealms.customtotem.CustomTotems
+api-version: 1.18
+authors: [ XiaoMoMi ]
+commands:
+  customtotems:
+    permission: customtotems.admin
+    permission-message: No Permission

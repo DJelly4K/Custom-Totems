@@ -1,0 +1,36 @@
+totems:
+  totem_1:
+    core: 'B'
+    #激活图腾后是否消耗物品
+    consume-item: true
+    #激活图腾后是否消耗图腾核心方块
+    consume-core: true
+    #激活图腾后是否消耗整个图腾结构
+    consume-totem: false
+    #第一层
+    layer_1:
+      - 'X X X X X X X'
+      - 'X A X X X X X'
+      - 'X X X X X X X'
+      - 'X X X X X X X'
+      - 'X X X X X X X'
+      - 'X X X X X X X'
+      - 'X X X X X X X'
+    #第二层
+    layer_2:
+      - 'X X X X X X X'
+      - 'X X X X X X X'
+      - 'X X X X X X X'
+      - 'X X X X X X X'
+      - 'X X X X X X X'
+      - 'X X X X X X X'
+      - 'X X X X X X X'
+    #第二层
+    layer_3:
+      - 'X X X X X X X'
+      - 'X X X X X X X'
+      - 'X X X X X X X'
+      - 'X X X X X X X'
+      - 'X X X X X X X'
+      - 'X X X X X X X'
+      - 'X X X X X X X'
