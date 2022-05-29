@@ -1,8 +1,8 @@
-package net.momirealms.customtotem.ConfigManager;
+package net.momirealms.customtotem.configmanager;
 
 import net.momirealms.customtotem.CustomTotems;
-import net.momirealms.customtotem.MessageManager.MessageManager;
-import net.momirealms.customtotem.Utils.Item;
+import net.momirealms.customtotem.messagemanager.MessageManager;
+import net.momirealms.customtotem.utils.Item;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;

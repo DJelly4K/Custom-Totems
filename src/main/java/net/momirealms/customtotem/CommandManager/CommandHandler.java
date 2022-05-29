@@ -1,9 +1,9 @@
-package net.momirealms.customtotem.CommandManager;
+package net.momirealms.customtotem.commandmanager;
 
-import net.momirealms.customtotem.ConfigManager.ConfigManager;
-import net.momirealms.customtotem.MessageManager.MessageManager;
-import net.momirealms.customtotem.Utils.Item;
-import net.momirealms.customtotem.Utils.Model;
+import net.momirealms.customtotem.configmanager.ConfigManager;
+import net.momirealms.customtotem.messagemanager.MessageManager;
+import net.momirealms.customtotem.utils.Item;
+import net.momirealms.customtotem.utils.Model;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;

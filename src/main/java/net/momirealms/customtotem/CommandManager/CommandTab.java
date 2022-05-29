@@ -1,6 +1,6 @@
-package net.momirealms.customtotem.CommandManager;
+package net.momirealms.customtotem.commandmanager;
 
-import net.momirealms.customtotem.ConfigManager.ConfigManager;
+import net.momirealms.customtotem.configmanager.ConfigManager;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;

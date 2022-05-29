@@ -1,4 +1,4 @@
-package net.momirealms.customtotem.Utils;
+package net.momirealms.customtotem.utils;
 
 import java.util.ArrayList;
 import java.util.Arrays;

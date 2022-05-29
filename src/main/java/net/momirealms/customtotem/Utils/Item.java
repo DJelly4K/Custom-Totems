@@ -1,6 +1,6 @@
-package net.momirealms.customtotem.Utils;
+package net.momirealms.customtotem.utils;
 
-import net.momirealms.customtotem.ConfigManager.ConfigManager;
+import net.momirealms.customtotem.configmanager.ConfigManager;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;

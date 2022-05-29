@@ -1,9 +1,9 @@
 package net.momirealms.customtotem;
 
-import net.momirealms.customtotem.CommandManager.CommandHandler;
-import net.momirealms.customtotem.CommandManager.CommandTab;
-import net.momirealms.customtotem.ConfigManager.ConfigManager;
-import net.momirealms.customtotem.MessageManager.MessageManager;
+import net.momirealms.customtotem.commandmanager.CommandHandler;
+import net.momirealms.customtotem.commandmanager.CommandTab;
+import net.momirealms.customtotem.configmanager.ConfigManager;
+import net.momirealms.customtotem.messagemanager.MessageManager;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 

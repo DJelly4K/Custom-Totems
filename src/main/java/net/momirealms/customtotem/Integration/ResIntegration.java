@@ -1,4 +1,4 @@
-package net.momirealms.customtotem.Integration;
+package net.momirealms.customtotem.integration;
 
 public class ResIntegration {
 }

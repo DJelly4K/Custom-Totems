@@ -1,4 +1,4 @@
-package net.momirealms.customtotem.Libs.MineDown;
+package net.momirealms.customtotem.Libs.mineDown;
 /*
  * Copyright (c) 2017 Max Lee (https://github.com/Phoenix616)
  *
@@ -43,11 +43,11 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 
-import static net.momirealms.customtotem.Libs.MineDown.MineDown.COLOR_PREFIX;
-import static net.momirealms.customtotem.Libs.MineDown.MineDown.FONT_PREFIX;
-import static net.momirealms.customtotem.Libs.MineDown.MineDown.FORMAT_PREFIX;
-import static net.momirealms.customtotem.Libs.MineDown.MineDown.HOVER_PREFIX;
-import static net.momirealms.customtotem.Libs.MineDown.MineDown.INSERTION_PREFIX;
+import static net.momirealms.customtotem.Libs.mineDown.MineDown.COLOR_PREFIX;
+import static net.momirealms.customtotem.Libs.mineDown.MineDown.FONT_PREFIX;
+import static net.momirealms.customtotem.Libs.mineDown.MineDown.FORMAT_PREFIX;
+import static net.momirealms.customtotem.Libs.mineDown.MineDown.HOVER_PREFIX;
+import static net.momirealms.customtotem.Libs.mineDown.MineDown.INSERTION_PREFIX;
 
 public class MineDownStringifier {
 

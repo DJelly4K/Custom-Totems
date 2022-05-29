@@ -1,4 +1,4 @@
-package net.momirealms.customtotem.Listeners;
+package net.momirealms.customtotem.listeners;
 
 import org.bukkit.block.Block;
 import org.bukkit.event.Listener;
