@@ -1,6 +1,6 @@
 package net.momirealms.customtotem.messagemanager;
 
-import net.momirealms.customtotem.Libs.mineDown.MineDown;
+import net.momirealms.customtotem.libs.minedown.MineDown;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 

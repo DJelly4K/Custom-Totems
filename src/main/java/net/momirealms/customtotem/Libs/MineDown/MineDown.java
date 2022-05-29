@@ -1,4 +1,4 @@
-package net.momirealms.customtotem.Libs.mineDown;
+package net.momirealms.customtotem.libs.minedown;
 
 /*
  * Copyright (c) 2017 Max Lee (https://github.com/Phoenix616)

@@ -3,7 +3,6 @@ package net.momirealms.customtotem.commandmanager;
 import net.momirealms.customtotem.configmanager.ConfigManager;
 import net.momirealms.customtotem.messagemanager.MessageManager;
 import net.momirealms.customtotem.utils.Item;
-import net.momirealms.customtotem.utils.Model;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -17,10 +16,6 @@ public class CommandHandler implements CommandExecutor {
     @Override
     @ParametersAreNonnullByDefault
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if (args[0].equalsIgnoreCase("test")){
-
-            Model.magic();
-        }
         //重载插件
         if (args[0].equalsIgnoreCase("reload")){
 

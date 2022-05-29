@@ -1,36 +1,36 @@
 totems:
   totem_1:
-    core: 'B'
+    #图腾核心的方块ID
+    core: 2
+    item: totem_item_1
+    commands:
+      - 'say {player} 在世界 {world} {x} {y} {z} 激活了一个图腾!'
     #激活图腾后是否消耗物品
     consume-item: true
     #激活图腾后是否消耗图腾核心方块
     consume-core: true
     #激活图腾后是否消耗整个图腾结构
-    consume-totem: false
-    #第一层
-    layer_1:
-      - 'X X X X X X X'
-      - 'X A X X X X X'
-      - 'X X X X X X X'
-      - 'X X X X X X X'
-      - 'X X X X X X X'
-      - 'X X X X X X X'
-      - 'X X X X X X X'
-    #第二层
-    layer_2:
-      - 'X X X X X X X'
-      - 'X X X X X X X'
-      - 'X X X X X X X'
-      - 'X X X X X X X'
-      - 'X X X X X X X'
-      - 'X X X X X X X'
-      - 'X X X X X X X'
-    #第二层
-    layer_3:
-      - 'X X X X X X X'
-      - 'X X X X X X X'
-      - 'X X X X X X X'
-      - 'X X X X X X X'
-      - 'X X X X X X X'
-      - 'X X X X X X X'
-      - 'X X X X X X X'
+    consume-totem: true
+
+
+    #图腾每一层的摆放
+    #每一层的长宽必须相等
+    #图腾核心可位于任意层任意位置
+    # “0”代表任意方块
+    layer:
+      1:
+        - '4 0 0 0 0 0 3'
+        - '0 4 1 1 1 3 0'
+        - '0 1 4 1 3 1 0'
+        - '0 1 1 2 1 1 0'
+        - '0 1 6 1 5 1 0'
+        - '0 6 1 1 1 5 0'
+        - '6 0 0 0 0 0 5'
+      2:
+        - '1 1 1 1 1 1 1'
+        - '1 1 1 1 1 1 1'
+        - '1 1 1 1 1 1 1'
+        - '1 1 1 7 1 1 1'
+        - '1 1 1 1 1 1 1'
+        - '1 1 1 1 1 1 1'
+        - '1 1 1 1 1 1 1'

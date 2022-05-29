@@ -1,8 +1,10 @@
 items:
   totem_item_1:
+    material: DIAMOND
     display:
       name: '&c神奇的钻石'
       lore:
         - "&7这是一个用于激活图腾核心的物品"
-    material: DIAMOND
+    custom-model-data: 1000
+
 

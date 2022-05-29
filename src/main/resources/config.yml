@@ -1,16 +1,16 @@
 #第三方插件兼容
 integration:
-  Residence: false
   ItemsAdder: false
 #插件消息
 messages:
-  prefix: '&a[CustomTotems] '
-  res-info: '&f你不可以在领地内使用此召唤阵!'
+  prefix: '&#EAE5C9-#6CC6CB&[CustomTotems] '
   wrong-item: '&f手持物品非激活图腾的物品!'
+  wrong-totem: '&f错误的图腾摆放方式'
   reload: '&f插件已成功重载!'
   no-console: '&f该指令无法由控制台执行!'
   get-item: '&f成功获取图腾激活物!'
   give-item: '&f成功给予玩家 {player} 图腾激活物!'
-#启用的图腾
-enabled-totems:
-  - totem_1
+  cooldown: '&f图腾触发冷却中'
+
+#右键图腾的冷却时间(ms)
+cooldown: 1000

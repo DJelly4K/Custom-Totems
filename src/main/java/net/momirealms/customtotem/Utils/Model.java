@@ -1,22 +1,22 @@
 package net.momirealms.customtotem.utils;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import net.momirealms.customtotem.CustomTotems;
+import org.bukkit.Bukkit;
+import org.bukkit.Location;
 
 public class Model {
 
-    private String[][][] space;
+    private int[][][] model;
 
-    private int length;
-    private int width;
-    private int height;
+    private final int length;
+    private final int width;
+    private final int height;
 
     public Model(int length, int width, int height) {
         this.length = length;
         this.width = width;
         this.height = height;
-        this.space = new String[length][width][height];
+        this.model = new int[length][width][height];
     }
 
     /*
@@ -35,63 +35,264 @@ public class Model {
     /*
     设置空间元素与获取空间元素
     */
-    public void setElement(String element, int length, int width, int height) {
-        this.space[length][width][height] = element;
+    public void setElement(int element, int length, int width, int height) {
+        this.model[length][width][height] = element;
     }
-    public String getElement(int length, int width, int height) {
-        return this.space[length][width][height];
+    public int getElement(int length, int width, int height) {
+        return this.model[length][width][height];
     }
 
     /*
-    设置空间与获取空间
+    4x2旋转镜像检测
     */
-    public void setSpace(String[][][] space) {
-        this.space = space;
-    }
-    public String[][][] getSpace() {
-        return this.space;
-    }
+    public static int checkLocationModel(Model model, Location location, CorePos corePos){
 
-    public Model createSpace(int length, int width, int height) {
-        Model space = new Model(length, width, height);
-        for (int i = 0; i < length; i++) {
-            for (int j = 0; j < width; j++) {
-                for (int k = 0 ; k < height; k++){
-                    space.setElement(this.space[i][j][k], i, j, k);
+        int xOffset = corePos.getX();
+        int yOffset = corePos.getY();
+        int zOffset = corePos.getZ();
+
+        int height = model.getHeight();
+        int length = model.getLength();
+        int width = model.getWidth();
+
+        //从第一层开始逐层扫描，只有一层满足要求才能扫描上一层，否则跳入下一个方向检测
+        Location startLoc = location.clone().subtract(0, yOffset, 0);
+
+        Label_1:
+        {
+            for(int i = 0; i< height; i++) {
+                //起点定于左下角，向右上遍历
+                Location loc = startLoc.clone().add(-xOffset, i, -zOffset);
+                for (int z = 0; z < width; z++) {
+                    for (int x = 0; x < length; x++) {
+                        int id = CheckBlock.getBlockID(loc.clone().add(x, 0, z).getBlock());
+                        if (model.getElement(x, z, i) == 0) continue;
+                        if (id != model.getElement(x, z, i)) {
+                            break Label_1;
+                        }
+                    }
                 }
             }
+            return 1;
         }
-        return space;
-    }
-
-    /*
-    用于在大量for循环的函数中清理缓存
-    */
-    public void cleanCache() {
-        this.space = new String[this.length][this.width][this.height];
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (!(obj instanceof Model)) return false;
-        for (int i = 0; i < 4; ++i) {
-            if (Arrays.deepEquals(this.space, ((Model)obj).getSpace())) {
-                return true;
+        Label_2:
+        {
+            for (int i = 0; i < height; i++) {
+                //起点定于右上角，向左下遍历
+                Location loc = startLoc.clone().add(xOffset, i, zOffset);
+                for (int z = 0; z < width; z++) {
+                    for (int x = 0; x < length; x++) {
+                        int id = CheckBlock.getBlockID(loc.clone().subtract(x, 0, z).getBlock());
+                        if (model.getElement(x, z, i) == 0) continue;
+                        if (id != model.getElement(x, z, i)) {
+                            break Label_2;
+                        }
+                    }
+                }
             }
+            return 2;
         }
-        return false;
+        Label_3:{
+            for (int i = 0; i < height; i++) {
+                //起点定于左上角，向右下遍历
+                Location loc = startLoc.clone().add(-zOffset, i, xOffset);
+                for (int z = 0; z < width; z++) {
+                    for (int x = 0; x < length; x++) {
+                        int id = CheckBlock.getBlockID(loc.clone().subtract(-z, 0, x).getBlock());
+                        if (model.getElement(x, z, i) == 0) continue;
+                        if (id != model.getElement(x, z, i)) {
+                            break Label_3;
+                        }
+                    }
+                }
+            }
+            return 3;
+        }
+        Label_4:
+        {
+            for (int i = 0; i < height; i++) {
+                //起点定于右下角，向左上遍历
+                Location loc = startLoc.clone().add(zOffset, i, -xOffset);
+                for (int z = 0; z < width; z++) {
+                    for (int x = 0; x < length; x++) {
+                        int id = CheckBlock.getBlockID(loc.clone().add(-z, 0, x).getBlock());
+                        if (model.getElement(x, z, i) == 0) continue;
+                        if (id != model.getElement(x, z, i)) {
+                            break Label_4;
+                        }
+                    }
+                }
+            }
+            return 4;
+        }
+        Label_5:
+        {
+            for (int i = 0; i < height; i++) {
+                //起点定于左下角（镜像），向上左遍历
+                Location loc = startLoc.clone().add(-zOffset, i, -xOffset);
+                for (int z = 0; z < width; z++) {
+                    for (int x = 0; x < length; x++) {
+                        int id = CheckBlock.getBlockID(loc.clone().add(z, 0, x).getBlock());
+                        if (model.getElement(x, z, i) == 0) continue;
+                        if (id != model.getElement(x, z, i)) {
+                            break Label_5;
+                        }
+                    }
+                }
+            }
+            return 5;
+        }
+        Label_6:
+        {
+            for (int i = 0; i < height; i++) {
+                //起点定于右上角（镜像），向下左遍历
+                Location loc = startLoc.clone().add(zOffset, i, xOffset);
+                for (int z = 0; z < width; z++) {
+                    for (int x = 0; x < length; x++) {
+                        int id = CheckBlock.getBlockID(loc.clone().subtract(z, 0, x).getBlock());
+                        if (model.getElement(x, z, i) == 0) continue;
+                        if (id != model.getElement(x, z, i)) {
+                            break Label_6;
+                        }
+                    }
+                }
+            }
+            return 6;
+        }
+        Label_7:
+        {
+            for (int i = 0; i < height; i++) {
+                //起点定于左上角（镜像)，向右下遍历
+                Location loc = startLoc.clone().add(-xOffset, i, zOffset);
+                for (int z = 0; z < width; z++) {
+                    for (int x = 0; x < length; x++) {
+                        int id = CheckBlock.getBlockID(loc.clone().add(x, 0, -z).getBlock());
+                        if (model.getElement(x, z, i) == 0) continue;
+                        if (id != model.getElement(x, z, i)) {
+                            break Label_7;
+                        }
+                    }
+                }
+            }
+            return 7;
+        }
+        Label_8:
+        {
+            for (int i = 0; i < height; i++) {
+                //起点定于右下角（镜像），向左上遍历
+                Location loc = startLoc.clone().add(xOffset, i, -zOffset);
+                for (int z = 0; z < width; z++) {
+                    for (int x = 0; x < length; x++) {
+                        int id = CheckBlock.getBlockID(loc.clone().add(-x, 0, z).getBlock());
+                        if (model.getElement(x, z, i) == 0) continue;
+                        if (id != model.getElement(x, z, i)) {
+                            break Label_8;
+                        }
+                    }
+                }
+            }
+            return 8;
+        }
+        return 0;
     }
+    public static void removeModel(Model model, Location location, CorePos corePos, int id) {
 
-    /*
-    方案一：先确定图腾核心在三维数组内的位置
-    补全二维投影为正方形且图腾核心位于中心
-    遍历三维空间的方块，并绘制三维元素模型
-    与配置文件三维元素模型比较
-    不可行：补齐区域的内的其他方块可能影响空间的判定
-    */
+        int xOffset = corePos.getX();
+        int yOffset = corePos.getY();
+        int zOffset = corePos.getZ();
 
-    /*
-    方案二：
+        int height = model.getHeight();
+        int length = model.getLength();
+        int width = model.getWidth();
 
-    */
+        //从第一层开始逐层扫描，只有一层满足要求才能扫描上一层，否则跳入下一个方向检测
+        Location startLoc = location.clone().subtract(0, yOffset, 0);
+
+        Bukkit.getScheduler().callSyncMethod(CustomTotems.instance, ()->{
+
+            switch (id) {
+                case 1:
+                    for (int i = 0; i < height; i++) {
+                        //起点定于左下角，向右上遍历
+                        Location loc = startLoc.clone().add(-xOffset, i, -zOffset);
+                        for (int z = 0; z < width; z++) {
+                            for (int x = 0; x < length; x++) {
+                                CheckBlock.removeBlock(loc.clone().add(x, 0, z).getBlock());
+                            }
+                        }
+                    }
+                case 2:
+                    for (int i = 0; i < height; i++) {
+                        //起点定于右上角，向左下遍历
+                        Location loc = startLoc.clone().add(xOffset, i, zOffset);
+                        for (int z = 0; z < width; z++) {
+                            for (int x = 0; x < length; x++) {
+                                CheckBlock.removeBlock(loc.clone().subtract(x, 0, z).getBlock());
+                            }
+                        }
+                    }
+                case 3:
+                    for (int i = 0; i < height; i++) {
+                        //起点定于左上角，向右下遍历
+                        Location loc = startLoc.clone().add(-zOffset, i, xOffset);
+                        for (int z = 0; z < width; z++) {
+                            for (int x = 0; x < length; x++) {
+                                CheckBlock.removeBlock(loc.clone().subtract(-z, 0, x).getBlock());
+                            }
+                        }
+                    }
+                case 4:
+                    for (int i = 0; i < height; i++) {
+                        //起点定于右下角，向左上遍历
+                        Location loc = startLoc.clone().add(zOffset, i, -xOffset);
+                        for (int z = 0; z < width; z++) {
+                            for (int x = 0; x < length; x++) {
+                                CheckBlock.removeBlock(loc.clone().add(-z, 0, x).getBlock());
+                            }
+                        }
+                    }
+                case 5:
+                    for (int i = 0; i < height; i++) {
+                        //起点定于左下角（镜像），向上左遍历
+                        Location loc = startLoc.clone().add(-zOffset, i, -xOffset);
+                        for (int z = 0; z < width; z++) {
+                            for (int x = 0; x < length; x++) {
+                                CheckBlock.removeBlock(loc.clone().add(z, 0, x).getBlock());
+                            }
+                        }
+                    }
+                case 6:
+                    for (int i = 0; i < height; i++) {
+                        //起点定于右上角（镜像），向下左遍历
+                        Location loc = startLoc.clone().add(zOffset, i, xOffset);
+                        for (int z = 0; z < width; z++) {
+                            for (int x = 0; x < length; x++) {
+                                CheckBlock.removeBlock(loc.clone().add(x, 0, -z).getBlock());
+                            }
+                        }
+                    }
+                case 7:
+                    for (int i = 0; i < height; i++) {
+                        //起点定于左上角（镜像)，向右下遍历
+                        Location loc = startLoc.clone().add(-xOffset, i, zOffset);
+                        for (int z = 0; z < width; z++) {
+                            for (int x = 0; x < length; x++) {
+                                CheckBlock.removeBlock(loc.getBlock());
+                            }
+                        }
+                    }
+                case 8:
+                    for (int i = 0; i < height; i++) {
+                        //起点定于右下角（镜像），向左上遍历
+                        Location loc = startLoc.clone().add(xOffset, i, -zOffset);
+                        for (int z = 0; z < width; z++) {
+                            for (int x = 0; x < length; x++) {
+                                CheckBlock.removeBlock(loc.clone().add(-x, 0, z).getBlock());
+                            }
+                        }
+                    }
+            }
+            return null;
+        });
+    }
 }

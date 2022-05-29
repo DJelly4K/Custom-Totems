@@ -1,4 +1,4 @@
-package net.momirealms.customtotem.Libs.mineDown;
+package net.momirealms.customtotem.libs.minedown;
 
 /*
  * Copyright (c) 2017 Max Lee (https://github.com/Phoenix616)
@@ -50,11 +50,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-import static net.momirealms.customtotem.Libs.mineDown.MineDown.COLOR_PREFIX;
-import static net.momirealms.customtotem.Libs.mineDown.MineDown.FONT_PREFIX;
-import static net.momirealms.customtotem.Libs.mineDown.MineDown.FORMAT_PREFIX;
-import static net.momirealms.customtotem.Libs.mineDown.MineDown.HOVER_PREFIX;
-import static net.momirealms.customtotem.Libs.mineDown.MineDown.INSERTION_PREFIX;
+import static net.momirealms.customtotem.libs.minedown.MineDown.COLOR_PREFIX;
+import static net.momirealms.customtotem.libs.minedown.MineDown.FONT_PREFIX;
+import static net.momirealms.customtotem.libs.minedown.MineDown.FORMAT_PREFIX;
+import static net.momirealms.customtotem.libs.minedown.MineDown.HOVER_PREFIX;
+import static net.momirealms.customtotem.libs.minedown.MineDown.INSERTION_PREFIX;
 
 public class MineDownParser {
     private static final String RAINBOW = "rainbow";

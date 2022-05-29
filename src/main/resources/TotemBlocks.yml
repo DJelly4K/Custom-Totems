@@ -1,8 +1,20 @@
 blocks:
-  1: AIR
-  2: DIAMOND_BLOCK
-  3: GOLD_BLOCK
-  4: customcrops:pot  #IA方块兼容
+  #空气
+  AIR: 1
 
-cores:
-  5: LAPIS_BLOCK
+  NETHERITE_BLOCK: 2
+  DIAMOND_BLOCK: 3
+  GOLD_BLOCK: 4
+  LAPIS_BLOCK: 5
+  REDSTONE_BLOCK: 6
+
+  #同一ID可以对应多种方块
+  OAK_LOG: 7
+  BIRCH_LOG: 7
+  SPRUCE_LOG: 7
+  DARK_OAK_LOG: 7
+  JUNGLE_LOG: 7
+  ACACIA_LOG: 7
+
+  #ItemsAdder方块支持
+  'customcrops:pot': 10
