@@ -5,13 +5,13 @@ totems:
     item: totem_item_1
     commands:
       - 'say {player} 在世界 {world} {x} {y} {z} 激活了一个图腾!'
+      #- 'mm mobs spawn 怪物ID 数量 {world},{x},{y},{z}'
     #激活图腾后是否消耗物品
     consume-item: true
     #激活图腾后是否消耗图腾核心方块
     consume-core: true
     #激活图腾后是否消耗整个图腾结构
     consume-totem: true
-
 
     #图腾每一层的摆放
     #每一层的长宽必须相等

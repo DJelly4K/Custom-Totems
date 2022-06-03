@@ -58,6 +58,7 @@ public class Item {
         //设置物品的各个属性
         ItemStack itemStack = new ItemStack(item.material);
         ItemMeta itemMeta = itemStack.getItemMeta();
+
         itemMeta.setDisplayName(item.name);
         itemMeta.setLore(item.lore);
         if(item.cmd != 0){

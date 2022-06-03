@@ -16,6 +16,9 @@ public class CommandHandler implements CommandExecutor {
     @Override
     @ParametersAreNonnullByDefault
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+
+        if(args.length < 1) return true;
+
         //重载插件
         if (args[0].equalsIgnoreCase("reload")){
 
@@ -28,30 +31,32 @@ public class CommandHandler implements CommandExecutor {
             return true;
         }
         if (args[0].equalsIgnoreCase("items")){
-            if(args[1].equalsIgnoreCase("get")){
-                if (sender instanceof Player){
+            if(args.length > 2){
+                if(args[1].equalsIgnoreCase("get")){
+                    if (sender instanceof Player){
 
-                    Item.giveItem(args[2], (Player) sender);
+                        Item.giveItem(args[2], (Player) sender);
 
-                    MessageManager.playerMessage(ConfigManager.Config.prefix+ConfigManager.Config.getItem, (Player) sender);
-                }else {
-                    MessageManager.consoleMessage(ConfigManager.Config.prefix+ConfigManager.Config.noConsole, Bukkit.getConsoleSender());
+                        MessageManager.playerMessage(ConfigManager.Config.prefix+ConfigManager.Config.getItem, (Player) sender);
+                    }else {
+                        MessageManager.consoleMessage(ConfigManager.Config.prefix+ConfigManager.Config.noConsole, Bukkit.getConsoleSender());
+                    }
                 }
-            }
-            if(args[1].equalsIgnoreCase("give")){
 
-                Player player = Bukkit.getPlayer(args[2]);
-                if(player == null) return false;
-                Item.giveItem(args[3], player);
+                if(args[1].equalsIgnoreCase("give") && args.length > 3){
 
-                if (sender instanceof Player){
-                    MessageManager.playerMessage(ConfigManager.Config.prefix+ConfigManager.Config.giveItem.replace("{player}", args[2]), (Player) sender);
-                }else {
-                    MessageManager.consoleMessage(ConfigManager.Config.prefix+ConfigManager.Config.giveItem.replace("{player}", args[2]), Bukkit.getConsoleSender());
+                    Player player = Bukkit.getPlayer(args[2]);
+                    if(player == null) return false;
+                    Item.giveItem(args[3], player);
+
+                    if (sender instanceof Player){
+                        MessageManager.playerMessage(ConfigManager.Config.prefix+ConfigManager.Config.giveItem.replace("{player}", args[2]), (Player) sender);
+                    }else {
+                        MessageManager.consoleMessage(ConfigManager.Config.prefix+ConfigManager.Config.giveItem.replace("{player}", args[2]), Bukkit.getConsoleSender());
+                    }
                 }
-                return true;
             }
         }
-        return false;
+        return true;
     }
 }
